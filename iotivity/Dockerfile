@@ -1,6 +1,6 @@
-FROM ubuntu:ileossa
+FROM ubuntu:yakkety
 
-ENV IOTIVITY_VERSION 1.2
+ENV IOTIVITY_VERSION 1.2-rel
 
 WORKDIR /root
 
@@ -47,7 +47,7 @@ RUN apt-get -y update && apt-get install -y \
 
 # Download and build iotivity C/C++ libs and examples
 RUN [ "x${RELEASE}" = "xtrue" ] && branch='release' || branch='debug' && \
-    git clone https://gerrit.iotivity.org/gerrit/p/iotivity.git --branch ${IOTIVITY_VERSION} && \
+    git clone https://github.com/iotivity/iotivity.git --branch ${IOTIVITY_VERSION} && \
     cd iotivity && \
       git clone https://github.com/01org/tinycbor.git extlibs/tinycbor/tinycbor && \
       git clone https://github.com/ARMmbed/mbedtls.git extlibs/mbedtls/mbedtls && \
